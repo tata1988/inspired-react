@@ -6,24 +6,24 @@ import Container from "../../Layout/Container/Container";
 import Category from "./Category/Category";
 import Gender from "./Gender/Gender";
 
-const Navigation = ({list}) => {
-    
+const Navigation = () => {
+
     const dispatch = useDispatch();
     const location = useLocation();
     const gender = location.pathname.split('/')[1] || 'women';
-    
+
     useEffect(() => {
-        
+
         dispatch(setActiveGender(gender));
     }, [gender, dispatch])
 
     return (
-       <nav>
-        <Container>
-            <Gender list={list}/>
-            <Category list={list}/>
-        </Container>
-       </nav>
+        <nav>
+            <Container>
+                <Gender />
+                <Category />
+            </Container>
+        </nav>
     )
 }
 

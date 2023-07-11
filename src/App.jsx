@@ -4,6 +4,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Header from "./components/Header/Header";
 import MainPage from "./components/MainPage/MainPage";
+import { fetchColors } from "./features/colorSlice";
 import { fetchNavigation } from "./features/navigationSlice";
 import Root from "./routes/Root";
 
@@ -13,8 +14,10 @@ const router = createBrowserRouter(
             <Route index element={<MainPage />} />
             <Route path="women" element={<MainPage gender='women'/>} />
             <Route path="men" element={<MainPage gender='men' />} />
+            <Route path="kids" element={<MainPage gender='kids' />} />
             <Route path="women/:category" element={<MainPage gender='women'/>} />
             <Route path="men/:category" element={<MainPage gender='men'/>} />
+            <Route path="kids/:category" element={<MainPage gender='kids'/>} />
             <Route path="*" element={<ErrorPage />} />
         </Route>
     )
@@ -26,6 +29,7 @@ const App = () => {
     
     useEffect(() => {
         dispatch(fetchNavigation());
+        dispatch(fetchColors());
     }, [dispatch]);
 
     return <RouterProvider router={router}></RouterProvider>
