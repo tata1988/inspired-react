@@ -17,14 +17,14 @@ const Footer = () =>  {
                              { genderList.map((gender) => (
                                  <li key={gender.link} className={s.gategoryItem}>
                                      <h3 className={s.categorySubtitle}>
-                                         <NavLink to={gender.link} className={s.link}>{categories[gender].title}</NavLink>
+                                         <NavLink to={`/catalog/${gender}`} className={s.link}>{categories[gender].title}</NavLink>
                                      </h3>
                                      <ul className={s.categorySublist}>
                                          {categories[gender].list.map((category) => (
                                              <li key={category.slug}>
                                                  <NavLink 
                                                      className={s.link} 
-                                                     to={`${gender}/${category.slug}`}>
+                                                     to={`/catalog/${gender}/${category.slug}`}>
                                                      {category.title}
                                                  </NavLink>
                                              </li>
@@ -76,7 +76,5 @@ const Footer = () =>  {
          </footer> 
      )
 }
-
-
 
 export default Footer;

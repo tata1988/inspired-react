@@ -9,7 +9,7 @@ const Root = () => (
         <Main>
             <Outlet />
         </Main>
-
+    
         <Footer />
     </>
 )

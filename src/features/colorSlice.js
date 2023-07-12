@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { COLORS_URL } from "../../const";
 
-const fetchColors = createAsyncThunk(
+export const fetchColors = createAsyncThunk(
     'color/fetchColors',
     async () => {
         const response = await fetch(COLORS_URL);

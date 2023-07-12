@@ -10,7 +10,7 @@ const Gender = () => {
     return (
         <ul className={s.gender}>
             {genderList.map((gender) => (
-                <li key={gender} className={s.item}>
+                <li key={`/catalog/${gender}`} className={s.item}>
                     <NavLink 
                     to={gender} 
                     className={({ isActive }) => 

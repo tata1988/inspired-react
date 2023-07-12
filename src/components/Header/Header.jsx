@@ -6,8 +6,8 @@ const Header = () => {
 
     return (
         <header className={s.header}>
-            <Top />
-            <Navigation />
+            <Top/>
+            <Navigation/>
         </header>
     )
 }
