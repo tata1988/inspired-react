@@ -8,7 +8,7 @@ const Product = ({ id, title, pic, price, colors }) => {
     return (
         <article className={s.product}>
             <NavLink to={`/product/${id}`} className={s.link}>
-                <img src={`${API_URL}${pic}`} className={s.image} />
+                <img src={`${API_URL}${pic}`} className={s.image} alt={title}/>
                 <h3 className={s.title}>{title}</h3>
             </NavLink>
 

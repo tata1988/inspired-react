@@ -7,15 +7,22 @@ import Goods from "../Goods/Goods";
 import Banner from "../Banner/Banner";
 
 const MainPage = () => {
-    const { gender, category } = useParams();
+    const { gender = 'women', category } = useParams();
     const dispatch = useDispatch();
 
-    const { activeGender, categories } = useSelector(state => state.navigation);
+    const { activeGender, categories, genderList } = useSelector(state => state.navigation);
     const genderData = categories[activeGender];
+    const categoryData = genderData?.list.find((item) => item.slug === category);
 
     useEffect(() => {
-        dispatch(setActiveGender(gender));
-    }, [dispatch, gender]);
+        if (gender) {
+            dispatch(setActiveGender(gender));
+        } else if (genderList[0]) {
+            dispatch(setActiveGender(genderList[0]));
+            dispatch(fetchGender(genderList[0]));
+        }
+        
+    }, [dispatch, gender, genderList]);
     
     useEffect(() => {
         if (gender && category) {
@@ -31,8 +38,8 @@ const MainPage = () => {
 
     return (
         <>
-            <Banner data={genderData?.banner} />
-           <Goods categoryData={genderData?.list.find((item) => item.slug === category)} />
+            {!category && <Banner data={genderData?.banner} />}
+           <Goods categoryData={categoryData} />
         </>
 
     )

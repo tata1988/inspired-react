@@ -15,7 +15,7 @@ const Footer = () =>  {
      
                          <ul className={s.categoryList}>
                              { genderList.map((gender) => (
-                                 <li key={gender.link} className={s.gategoryItem}>
+                                 <li key={gender} className={s.gategoryItem}>
                                      <h3 className={s.categorySubtitle}>
                                          <NavLink to={`/catalog/${gender}`} className={s.link}>{categories[gender].title}</NavLink>
                                      </h3>

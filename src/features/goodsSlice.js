@@ -5,7 +5,7 @@ export const fetchGender = createAsyncThunk(
     'goods/fetchGender',
     async (gender) => {
         const url = new URL(GOODS_URL);
-        url.searchParams.append('gender');
+        url.searchParams.append('gender', gender);
         const response = await fetch(url);
         return await response.json();
     }

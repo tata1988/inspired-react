@@ -12,7 +12,7 @@ const Gender = () => {
             {genderList.map((gender) => (
                 <li key={`/catalog/${gender}`} className={s.item}>
                     <NavLink 
-                    to={gender} 
+                    to={`/catalog/${gender}`} 
                     className={({ isActive }) => 
                     cn(s.link, (isActive || gender === activeGender) && s.linkActive)}
                     >
