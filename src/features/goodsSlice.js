@@ -21,7 +21,7 @@ export const fetchCategory = createAsyncThunk(
         const response = await fetch(url);
         return await response.json();
     }
-)
+);
 
 const goodsSlice = createSlice({
     name: 'goods',
@@ -36,7 +36,7 @@ const goodsSlice = createSlice({
     reducers: {
         setPage: (state, action) => {
             state.page = action.payload;
-        }
+        },
     },
     extraReducers: builder => {
         builder

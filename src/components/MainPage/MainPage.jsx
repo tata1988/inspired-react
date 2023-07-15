@@ -5,12 +5,14 @@ import { fetchCategory, fetchGender } from "../../features/goodsSlice";
 import { setActiveGender } from "../../features/navigationSlice";
 import Goods from "../Goods/Goods";
 import Banner from "../Banner/Banner";
+import { usePageFromSearchParams } from "../../hooks/usePageFromSearchParams";
 
 const MainPage = () => {
-    const { gender = 'women', category } = useParams();
+    const { gender, category } = useParams();
     const dispatch = useDispatch();
+    const page = usePageFromSearchParams(dispatch);
 
-    const { activeGender, categories, genderList } = useSelector(state => state.navigation);
+    const { activeGender, categories, genderList } = useSelector((state) => state.navigation);
     const genderData = categories[activeGender];
     const categoryData = genderData?.list.find((item) => item.slug === category);
 
@@ -21,25 +23,29 @@ const MainPage = () => {
             dispatch(setActiveGender(genderList[0]));
             dispatch(fetchGender(genderList[0]));
         }
-        
+
     }, [dispatch, gender, genderList]);
-    
+
     useEffect(() => {
         if (gender && category) {
-            dispatch(fetchCategory({ gender, category }));
+            const params = { gender, category };
+            if (page) {
+                params.page = page;
+            }
+            dispatch(fetchCategory(params));
             return;
         }
         if (gender) {
             dispatch(fetchGender(gender));
             return;
         }
-        
-    }, [gender, category, dispatch])
+
+    }, [gender, category, page, dispatch])
 
     return (
         <>
             {!category && <Banner data={genderData?.banner} />}
-           <Goods title={categoryData?.title} />
+            <Goods title={categoryData?.title} />
         </>
 
     )
