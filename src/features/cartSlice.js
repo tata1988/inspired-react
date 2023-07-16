@@ -22,8 +22,9 @@ export const cartSlice = createSlice({
             }
 
             localStorage.setItem('cart', JSON.stringify(state.cartItems));
+            state.countItems = state.cartItems.length;
         },
-        removeFromCart(state, action) {
+        removeFromCart(state, actions) {
             const { id, color, size } = actions.payload;
             const itemIndex = state.cartItems.findIndex(
                 item => item.id === id && item.color === color && item.size === size
@@ -33,6 +34,7 @@ export const cartSlice = createSlice({
             }
 
             localStorage.setItem('cart', JSON.stringify(state.cartItems));
+            state.countItems = state.cartItems.length;
         }
     },
 

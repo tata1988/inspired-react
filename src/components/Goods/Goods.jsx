@@ -6,12 +6,15 @@ import Pagination from "../Pagination/Pagination";
 
 const Goods = ({ title }) => {
 
-    const { goodsList } = useSelector((state) => state.goods);
+    const { goodsList, totalCount } = useSelector((state) => state.goods);
 
     return (
         <section>
             <Container>
-                <h2 className={s.title}>{title ?? 'Новинки'}</h2>
+                <h2 className={s.title}>
+                    {title ?? 'Новинки'}
+                    {totalCount && <sup>&nbsp;({totalCount})</sup>}
+                </h2>
                 <ul className={s.list}>
                     {goodsList.map((item) => (
                         <li key={item.id}>

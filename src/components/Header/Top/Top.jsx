@@ -6,15 +6,19 @@ import { NavLink } from "react-router-dom";
 import { ReactComponent as SearchSVG } from '../../../assets/search.svg';
 import { ReactComponent as CartSVG } from '../../../assets/cart.svg';
 import BtnLike from "../../BtnLike/BtnLike";
+import { useSelector } from "react-redux";
+import Count from "../../Count/Count";
 
 const Top = () => {
 
+    const { countItems } = useSelector((state) => state.cart);
+
     return (
         <div className={s.top}>
-           <Container className={s.topContainer}>
+            <Container className={s.topContainer}>
                 <a href="tel:89304902620" className={cn(s.topLink, s.topPhone)}>89304902620</a>
                 <NavLink to="/" className={s.topLogo}>
-                    <img src={logo} alt="logo"/>
+                    <img src={logo} alt="logo" />
                 </NavLink>
                 <div className={s.topNavigation}>
                     <ul className={s.topNavList}>
@@ -26,16 +30,17 @@ const Top = () => {
                         <li className={s.topNavItem}>
                             <NavLink to={'/cart'} className={s.topLink}>
                                 <CartSVG />
+                                <span className={s.topLinkCount}>{countItems}</span>
                             </NavLink>
                         </li>
                         <li className={s.topNavItem}>
                             <NavLink to={'/favorite'} className={cn(s.topLink, s.like)}>
-                                 <BtnLike />
+                                <BtnLike />
                             </NavLink>
                         </li>
                     </ul>
                 </div>
-           </Container>
+            </Container>
         </div>
     )
 }
