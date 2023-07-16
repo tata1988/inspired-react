@@ -6,12 +6,17 @@ import { NavLink } from "react-router-dom";
 import { ReactComponent as SearchSVG } from '../../../assets/search.svg';
 import { ReactComponent as CartSVG } from '../../../assets/cart.svg';
 import BtnLike from "../../BtnLike/BtnLike";
-import { useSelector } from "react-redux";
-import Count from "../../Count/Count";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleSearch } from "../../../features/searchSlice";
 
 const Top = () => {
 
     const { countItems } = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
+    const handleOpenSearch = () => {
+        dispatch(toggleSearch());
+    }
 
     return (
         <div className={s.top}>
@@ -23,7 +28,7 @@ const Top = () => {
                 <div className={s.topNavigation}>
                     <ul className={s.topNavList}>
                         <li className={s.topNavItem}>
-                            <button className={s.topLink}>
+                            <button onClick={handleOpenSearch} className={s.topLink}>
                                 <SearchSVG />
                             </button>
                         </li>
